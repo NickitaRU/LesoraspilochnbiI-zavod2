@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture factory simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="jquery.circliful.css">
+    <div id="resurses">
+        <img src="img/logs.png" alt="" height="100px">
+        <span id="resursesLogs"></span>
+        <img src="img/board.png" height="100px" alt="">
+        <span id="resursesBoard"></span>
+        <span style="color: green; font-size: 100px; position: relative; top: -12.5px;">$</span>
+        <span id="money"></span>
+    </div>
+</head>
+<body onload="start()">
+    <table id="main_menu">
+        <tr>
+            <td>
+                <img src="img/Tasks.png" alt="Тут был Вася!!!" id="tasks">
+                <img src="img/tree.png" alt="" width="300" id="factory1" onclick="showFactory(0)">
+                <img src="img/lockedSawmill.png" alt="" width="300" id="factory2" onclick="showFactory(2)">
+                <img src="img/sale.png" alt="" width="300" id="factory3" onclick="showFactory(3)">
+                <img src="img/warehouse.png" alt="" width="600" id="warehouse">
+                <div id="forest">Лесопилка</div>
+                <div id="piloram">Пилорама</div>
+                <div id="birja">Биржа</div>
+                <div id="tasksTXT">Задачи</div>
+            </td>
+        </tr>
+    </table>
+    <table id="forest_factory">
+        <tr>
+            <td>
+                <table id="upgraiding_table_for_forest_factory">
+                    <tr>
+                        <td>    
+                            Уровень: <span id="forest_factory_level"></span> <span id="forest_factory_level_upgrade" class="upgradeNum"></span><br>
+                            Срубается за клик: <span id="forest_factory_pbc"></span> <span id="forest_factory_pbc_upgrade" class="upgradeNum"></span><br>
+                            Срубается в секyнду: <span id="forest_factory_pbs"></span> <span id="forest_factory_pbs_upgrade" class="upgradeNum"></span><br>
+                            Стоимость следующего уровня: <span id="forest_factory_nlc"> <span id="forest_factory_nlc_upgrade" class="upgradeNum"></span></span><br>
+                            Количество улучшаемых уровней: <br>
+                            <img src="img/x1.png" alt="" id="forest_factory_x1">
+                            <img src="img/x5.png" alt="" id="forest_factory_x5">
+                            <img src="img/x10.png" alt="" id="forest_factory_x10">
+                            <img src="img/fullFrame.png" alt="" id="forest_factory_fullFrame0">
+                            <img src="img/fullFrame.png" alt="" id="forest_factory_fullFrame1">
+                            <img src="img/fullFrame.png" alt="" id="forest_factory_fullFrame2">
+                            <img src="img/upgrade.png" alt="" id="forest_factory_upgrade">
+                        </td>
+                    </tr>
+                </table>
+                <img src="img/back.png" alt="" id="back" onclick="closeFactory(0)">
+                <img src="img/tree.png" alt="" id="forest_factory_tree">
+                <div id="forest_factory_timer"><div id="forest_factory_p">.</div></div>
+            </td>
+        </tr>
+    </table>
+    <table id="ofice">
+        <tr>
+            <td>
+                <img src="img/back.png" alt="" id="back" onclick="closeFactory(3)">
+                <table id="trade_table" border="5">
+                    <tr>
+                        <td>
+                            <table>
+                                <tr><td style="width: 1200px;" align="center">Выберете наилучший торг:</td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table border="5" style="border-collapse:collapse;">
+                                <tr>
+                                    <td style="height: 250px; width: 400px;" align="center" onclick="sold(0)">
+                                     <table onclick="sold(0)">
+                                         <tr>
+                                             <td id="lot0_img">
+
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td id="ofice_lot0">
+
+                                             </td>
+                                         </tr>
+                                     </table>
+                                    </td>
+                                    <td style="height: 250px; width: 400px;" align="center">
+                                        <table onclick="sold(1)">
+                                            <tr>
+                                                <td id="lot1_img">
+   
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td id="ofice_lot1">
+   
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td style="height: 250px; width: 400px;" align="center">
+                                        <table onclick="sold(2)">
+                                            <tr>
+                                                <td id="lot2_img">
+   
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td id="ofice_lot2">
+   
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td id="ofice_ut">
+                                        Уровень: <span id="ofice_level"></span> <span id="ofice_level_upgrade"></span> <br>
+                                        Минимальная стоимость: <span id="ofice_mnp"></span> <span id="ofice_mnp_upgrade" class="upgradeNum"></span><br>
+                                        Максимальная стоимость: <span id="ofice_mxp"></span> <span id="ofice_mxp_upgrade" class="upgradeNum"></span><br>
+                                        Стоимость следующего уровня: <span id="ofice_nlc"></span> <span id="ofice_nlc_upgrade" class="upgradeNum"></span><br>
+                                        Количество улучшаемых уровней: <br id="br">  
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <div style="width: 100px; height: 699px; background-color: lightblue;
+                position: absolute;  left: 200px; top: 100px;" class="unvisibletxt" id="ofice_time">
+                    .
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table id="boardF">
+        <tr>
+            <td id="boardF_td">
+                <img src="img/back.png" alt="" id="back" onclick="closeFactory(2)">
+                <div id="machine1">
+                    <div id="boardF_timer1" class="timer unvisibletxt">.</div>
+                    <img src="img/saw.png" alt="" id="saw1" class="blink">
+                </div>
+                <div id="boardF_bm">
+                    <p>Купить пилорамму за: <span id="boardF_psw"></span></p>
+                    <img src="img/add.png" alt="" id="boardF_add">
+                </div>
+                <div id="div"></div>
+            </td>
+        </tr>
+    </table>
+    </script>
+    <script src="js.js"></script>
+</body>
+</html>
